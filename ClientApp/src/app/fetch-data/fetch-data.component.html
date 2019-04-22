@@ -1,0 +1,54 @@
+<mat-card>
+  <div class="alert alert-info">
+      <strong>Federal Provider List</strong>
+  </div>
+  <div class="example-container mat-elevation-z8">
+    <input type="text" #textFilter (keyup)="SearchTable(textFilter.value)">
+    <mat-table #Table [dataSource]="MyDataSource" matSort>
+
+      <ng-container matColumnDef="provider_Name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Provider Name </mat-header-cell>
+        <mat-cell *matCellDef="let post"> {{post.provider_Name}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="federal_Provider_Number">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Provider Number </mat-header-cell>
+        <mat-cell *matCellDef="let post"> {{post.federal_Provider_Number}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="provider_Address">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Provider Address </mat-header-cell>
+        <mat-cell *matCellDef="let post"> {{post.provider_Address}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="provider_City">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Provider City </mat-header-cell>
+        <mat-cell *matCellDef="let post"> {{post.provider_City}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="provider_State">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Provider State </mat-header-cell>
+        <mat-cell *matCellDef="let post"> {{post.provider_State}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="provider_Zip_Code">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Provider ZipCode </mat-header-cell>
+        <mat-cell *matCellDef="let post"> {{post.provider_Zip_Code}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="provider_Phone_Number">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Provider Phone Number </mat-header-cell>
+        <mat-cell *matCellDef="let post"> {{post.provider_Phone_Number}} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <mat-paginator #paginator [pageSize]="50"
+                   [pageSizeOptions]="[25, 50, 100]"
+                   [pageIndex]="currentPage"
+                   (page)="pageEvent = handlePage($event)">
+    </mat-paginator>
+  </div>
+</mat-card>
